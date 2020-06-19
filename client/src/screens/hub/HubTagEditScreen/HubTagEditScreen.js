@@ -78,21 +78,7 @@ class HubTagEditScreen extends React.Component {
     this.props.getRelatedRuns(tag_id).then(data => {
       console.log(data)
       this.setState({
-        relatedRuns: data.data.map((data) => {
-          return (
-            <div> 
-              <Link to={buildUrl(screens.HUB_PROJECT_EXPERIMENT, {
-                // experiment_name: experimentName,
-                // commit_id: commit.hash,
-              })}>
-                {data.hash} 
-              </Link>
-              <div style={{float: 'right'}}>
-                {data.created_at} 
-              </div>
-            </div>
-          )
-        })
+        relatedRuns: data.data
       })
     })
   }
@@ -153,16 +139,26 @@ class HubTagEditScreen extends React.Component {
   };
 
   _renderOverview = () => {
-    return (
+    return ( 
       <UI.Segment type='secondary'>
         <UI.Text divided>
           Related Runs
         </UI.Text>
-        {this.state.relatedRuns.map((run) => (
-          <UI.Text className="HubTagEditScreen__Item">
-            {run}
-          </UI.Text>
-        ))}
+        <div className='HubTagEditScreen__items'>
+          {this.state.relatedRuns.map((run) =>
+            <div className='HubTagEditScreen__item' key={run.hash}>
+              <Link to={buildUrl(screens.HUB_PROJECT_EXPERIMENT, {
+                // experiment_name: experimentName,
+                // commit_id: commit.hash,
+              })}>
+                {run.hash}
+              </Link>
+              <UI.Text inline>
+                {run.created_at} 
+              </UI.Text>
+            </div>
+          )}
+        </div>
       </UI.Segment>
     )
   }

@@ -1,4 +1,22 @@
-.HubTagEditScreen__Item {
-  padding: var(--component-spacing-md) 0 var(--component-spacing-md);
-  border-bottom: 1px solid var(--grey-lighter);
-} 
+.HubTagEditScreen__items {
+  .HubTagEditScreen__item:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.HubTagEditScreen__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: var(--component-spacing-sm) 0;
+
+  > * {
+    margin-right: var(--component-spacing-sm);
+    flex-shrink: 0;
+  }
+}
+
+.HubTagEditScreen__item__name {
+  display: block;
+  flex-shrink: 1 !important;
+}

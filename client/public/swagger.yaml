@@ -57,6 +57,50 @@ paths:
             application/json:
               schema:
                 type: object
+  "/tags/update":
+    post:
+      operationId: updateTag
+      summary: Update tag's name or color.
+      tags:
+        - Tag
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+                color:
+                  type: string
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+  "/tags/runs/{tag_id}":
+    get:
+      operationId: getRelatedRuns
+      summary: get related runs for a given tag.
+      tags:
+        - Tag
+      parameters:
+        - name: tag_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
   "/executables/new":
     post:
       operationId: newExecutable

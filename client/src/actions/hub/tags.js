@@ -25,3 +25,27 @@ export function postNewTag(params) {
     });
   }
 }
+
+export function updateTag(params) {
+  return dispatch => {
+    return new Promise((resolve, reject) => {
+      callApi('Tag.updateTag', { ...params }).then((data) => {
+        resolve(data);
+      }).catch((err) => {
+        reject(err);
+      });
+    });
+  }
+}
+
+export function getRelatedRuns(tag_id) {
+  return dispatch => {
+    return new Promise((resolve, reject) => {
+      callApi('Tag.getRelatedRuns', { tag_id }).then((data) => {
+        resolve(data);
+      }).catch((err) => {
+        reject(err);
+      });
+    });
+  }
+}

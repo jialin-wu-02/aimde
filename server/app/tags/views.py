@@ -53,3 +53,42 @@ class TagCreateApi(Resource):
         return jsonify({
             'id': t.uuid,
         })
+        
+@tags_api.resource('/update')
+class TagUpdateApi(Resource):
+    def post(self):
+        command_form = request.form
+
+        uuid = command_form.get('id') or ''
+        uuid = uuid.strip()
+
+        name = command_form.get('name') or ''
+        name = name.strip()
+
+        color = command_form.get('color') or ''
+        color = color.strip()
+
+        if not name or not color:
+            return make_response(jsonify({}), 403)
+
+        t = Tag(name, color)
+        tag = Tag.query.filter_by(uuid=uuid).first()
+        tag.name = name;
+        tag.color = color;
+        db.session.commit()
+
+        return jsonify({
+            'id': t.uuid,
+        })
+
+
+@tags_api.resource('/runs/<tag_id>')
+class TagGetRelatedRuns(Resource):
+    def get(self, tag_id):
+        tag = Tag.query.filter_by(uuid=tag_id).first()
+        relatedRuns = []
+        for commit in tag.commits:
+            relatedRuns.append({"hash": commit.hash, "uuid": commit.uuid, "created_at": commit.created_at})
+        return jsonify({
+            'data': relatedRuns,
+        }) 

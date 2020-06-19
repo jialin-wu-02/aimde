@@ -64,7 +64,11 @@ class HubTagsScreen extends React.Component {
         <UI.List>
           {this.state.tags.map((tag, tagKey) =>
             <UI.ListItem key={tagKey} className='HubTagsScreen__tags__item'>
-              <UI.Label color={tag.color}>{tag.name}</UI.Label>
+              <Link to={buildUrl(screens.HUB_PROJECT_EDIT_TAG, {
+                tag_id: tag.id
+              })}>
+                <UI.Label color={tag.color}>{tag.name}</UI.Label>
+              </Link>
               <UI.Text className='HubTagsScreen__tags__item__commits' small inline type='grey'>
                 Commits: {tag.num_commits}
               </UI.Text>

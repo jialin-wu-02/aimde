@@ -116,6 +116,13 @@ export function getWithState(caseName, caseClass) {
         getTags: tagsActions.getTags,
       });
       break;
+    case classes.HUB_PROJECT_EDIT_TAG:
+      Object.assign(mapDispatch2Props, {
+        getTags: tagsActions.getTags,
+        updateTag: tagsActions.updateTag,
+        getRelatedRuns: tagsActions.getRelatedRuns,
+      });
+      break;
     case classes.HUB_PROJECT_CREATE_TAG:
       Object.assign(mapDispatch2Props, {
         postNewTag: tagsActions.postNewTag,

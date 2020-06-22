@@ -850,7 +850,11 @@ class ControlPanel extends Component {
       },
     }));
 
-    this.props.updateCommitTag(lineData.hash, tag.id).then(tagsIds => {
+    this.props.updateCommitTag({
+      commit_hash: lineData.hash,
+      tag_id: tag.id,
+      experiment_name: lineData.branch,
+    }).then(tagsIds => {
       this.getCommitTags(lineData);
     });
   };

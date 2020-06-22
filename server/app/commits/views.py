@@ -63,12 +63,20 @@ class CommitTagApi(Resource):
         return jsonify(commit_tags)
 
 
-@commits_api.resource('/tags/update/<commit_hash>/<tag_id>')
+@commits_api.resource('/tags/update')
 class CommitTagUpdateApi(Resource):
-    def get(self, commit_hash, tag_id):
-        commit = Commit.query.filter(Commit.hash == commit_hash).first()
+    def post(self):
+        form = request.form
+
+        commit_hash = form.get('commit_hash')
+        experiment_name = form.get('experiment_name')
+        tag_id = form.get('tag_id')
+
+        commit = Commit.query.filter((Commit.hash == commit_hash) &
+                                     (Commit.experiment_name == experiment_name)
+                                     ).first()
         if not commit:
-            commit = Commit(commit_hash)
+            commit = Commit(commit_hash, experiment_name)
             db.session.add(commit)
             db.session.commit()
 

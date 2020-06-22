@@ -364,23 +364,24 @@ paths:
             application/json:
               schema:
                 type: object
-  "/commits/tags/update/{commit_hash}/{tag_id}":
-    get:
+  "/commits/tags/update":
+    post:
       operationId: updateCommitTag
       summary: Update commit tag
       tags:
         - Commit
-      parameters:
-        - name: commit_hash
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: tag_id
-          in: path
-          required: true
-          schema:
-            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                commit_hash:
+                  type: string
+                experiment_name:
+                  type: string
+                tag_id:
+                  type: string
       responses:
         "200":
           description: ok

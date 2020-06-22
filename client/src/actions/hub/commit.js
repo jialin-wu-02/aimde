@@ -38,10 +38,10 @@ export function getCommitTags(commit_id) {
   }
 }
 
-export function updateCommitTag(commit_hash, tag_id) {
+export function updateCommitTag(params) {
   return dispatch => {
     return new Promise((resolve, reject) => {
-      callApi('Commit.updateCommitTag', { commit_hash, tag_id }).then((data) => {
+      callApi('Commit.updateCommitTag', params).then((data) => {
         resolve(data);
       }).catch((err) => {
         reject(err);

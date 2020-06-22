@@ -16,13 +16,15 @@ class Commit(db.Model):
 
     uuid = db.Column(db.Text, primary_key=True)
     hash = db.Column(db.Text)
+    experiment_name = db.Column(db.Text, default='')
     tags = relationship('Tag', secondary=CommitTagAssociation)
     created_at = db.Column(db.DateTime, default=default_created_at)
     is_archived = db.Column(db.Boolean)
 
-    def __init__(self, hash):
+    def __init__(self, hash, experiment_name):
         self.uuid = str(uuid.uuid1())
         self.hash = hash
+        self.experiment_name = experiment_name
         self.is_archived = False
 
 

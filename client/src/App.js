@@ -16,7 +16,7 @@ import HubExecutableDetailScreen from './screens/hub/HubExecutableDetailScreen/H
 import HubExecutableProcessDetailScreen from './screens/hub/HubExecutableProcessDetailScreen/HubExecutableProcessDetailScreen';
 import HubTagsScreen from './screens/hub/HubTagsScreen/HubTagsScreen';
 import HubTagCreateScreen from './screens/hub/HubTagCreateScreen/HubTagCreateScreen';
-import HubTagEditScreen from './screens/hub/HubTagEditScreen/HubTagEditScreen';
+import HubTagDetailScreen from './screens/hub/HubTagDetailScreen/HubTagDetailScreen';
 
 
 class App extends React.Component {
@@ -46,7 +46,7 @@ class App extends React.Component {
           <Route exact path={screens.HUB_PROJECT_EXECUTABLE_DETAIL} component={HubExecutableDetailScreen}/>
           <Route exact path={screens.HUB_PROJECT_EXECUTABLE_PROCESS_DETAIL} component={HubExecutableProcessDetailScreen}/>
           <Route exact path={screens.HUB_PROJECT_CREATE_TAG} component={HubTagCreateScreen}/>
-          <Route exact path={screens.HUB_PROJECT_EDIT_TAG} component={HubTagEditScreen}/>
+          <Route exact path={screens.HUB_PROJECT_EDIT_TAG} component={HubTagDetailScreen}/>
           <Route exact path={screens.HUB_PROJECT_TAGS} component={HubTagsScreen}/>
           <Route exact path={screens.HUB_PROJECT_EXPERIMENT} component={HubExperimentScreen}/>
           <Route exact path={screens.HUB_PROJECT_EXECUTABLES} component={HubExecutablesScreen}/>

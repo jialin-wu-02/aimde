@@ -88,7 +88,7 @@ class TagGetRelatedRuns(Resource):
         tag = Tag.query.filter_by(uuid=tag_id).first()
         relatedRuns = []
         for commit in tag.commits:
-            relatedRuns.append({"hash": commit.hash, "uuid": commit.uuid, "created_at": commit.created_at})
+            relatedRuns.append({"hash": commit.hash, "experiment_name": commit.experiment_name, "uuid": commit.uuid, "created_at": commit.created_at})
         return jsonify({
             'data': relatedRuns,
         }) 

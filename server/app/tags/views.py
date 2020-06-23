@@ -9,6 +9,7 @@ from flask_restful import Api, Resource
 from app import App
 from app.db import db
 from app.commits.models import Tag
+from sqlalchemy.orm import joinedload
 
 
 tags_bp = Blueprint('tags', __name__)
@@ -71,24 +72,25 @@ class TagUpdateApi(Resource):
         if not name or not color:
             return make_response(jsonify({}), 403)
 
-        t = Tag(name, color)
         tag = Tag.query.filter_by(uuid=uuid).first()
+        if not tag:
+            return make_response(jsonify({}), 404)
         tag.name = name;
         tag.color = color;
         db.session.commit()
 
         return jsonify({
-            'id': t.uuid,
+            'id': tag.uuid,
         })
 
 
 @tags_api.resource('/runs/<tag_id>')
 class TagGetRelatedRuns(Resource):
     def get(self, tag_id):
-        tag = Tag.query.filter_by(uuid=tag_id).first()
+        tag = Tag.query.options(joinedload('commits')).filter_by(uuid=tag_id).first()
         relatedRuns = []
         for commit in tag.commits:
             relatedRuns.append({"hash": commit.hash, "experiment_name": commit.experiment_name, "uuid": commit.uuid, "created_at": commit.created_at})
         return jsonify({
             'data': relatedRuns,
-        }) 
+        })

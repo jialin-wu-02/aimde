@@ -1,5 +1,5 @@
-import React from 'react';
-import InsightContent from '../../../components/hub/InsightContent/InsightContent'
+import React from "react";
+import InsightContent from "../../../components/hub/InsightContent/InsightContent";
 
 
 class HubExperimentScreen extends React.Component {
@@ -7,16 +7,16 @@ class HubExperimentScreen extends React.Component {
     super(props);
   }
 
-  render() {
+  render () {
     return (
       <InsightContent
         experiment_name={this.props.match.params.experiment_name}
         commit_id={this.props.match.params.commit_id}
-        insight_name={null}
-        location={this.props.location}
+        insight_name={this.props.match.params.insight_name}
+        location={this.props.match.params.location}
       />
     );
   }
 }
 
-export default HubExperimentScreen;
+export default HubExperimentScreen; 

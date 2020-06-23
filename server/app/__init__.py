@@ -50,12 +50,14 @@ class App(metaclass=Singleton):
         from app.projects.views import projects_bp
         from app.commits.views import commits_bp
         from app.executables.views import executables_bp
+        from app.insights.views import insights_bp
         from app.tags.views import tags_bp
 
         api.register_blueprint(general_bp)
         api.register_blueprint(projects_bp, url_prefix='/api/v1/projects')
         api.register_blueprint(commits_bp, url_prefix='/api/v1/commits')
         api.register_blueprint(executables_bp, url_prefix='/api/v1/executables')
+        api.register_blueprint(insights_bp, url_prefix='/api/v1/insights')
         api.register_blueprint(tags_bp, url_prefix='/api/v1/tags')
 
         cls.api = api

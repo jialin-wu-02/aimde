@@ -13,3 +13,4 @@ export const HUB_PROJECT_EXECUTABLE_DETAIL = '/executables/:executable_id';
 export const HUB_PROJECT_EXECUTABLE_PROCESS_DETAIL = '/executables/process/:process_id';
 export const HUB_PROJECT_TAGS = '/tags';
 export const HUB_PROJECT_CREATE_TAG = '/tags/new';
+export const HUB_INSIGHT_SCREEN = '/insights/:experiment_name/:commit_id/:insight_name'

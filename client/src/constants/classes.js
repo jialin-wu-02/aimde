@@ -25,3 +25,6 @@ export const HEADER = 'HEADER';
 export const CONTROL_PANEL = 'CONTROL_PANEL';
 export const SEARCH_BAR = 'SEARCH_BAR';
 export const RUNNING_EXEC_LIST = 'RUNNING_EXEC_LIST';
+
+// INSIGHTS
+export const INSIGHT_CONTENT = 'INSIGHT_CONTENT'; 

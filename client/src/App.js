@@ -16,6 +16,8 @@ import HubExecutableDetailScreen from './screens/hub/HubExecutableDetailScreen/H
 import HubExecutableProcessDetailScreen from './screens/hub/HubExecutableProcessDetailScreen/HubExecutableProcessDetailScreen';
 import HubTagsScreen from './screens/hub/HubTagsScreen/HubTagsScreen';
 import HubTagCreateScreen from './screens/hub/HubTagCreateScreen/HubTagCreateScreen';
+import CreateExecutableScreen from './screens/hub/HubExecutableCreateScreen/HubExecutableCreateScreen';
+import HubInsightScreen from './screens/hub/HubInsightScreen/HubInsightScreen';
 
 
 class App extends React.Component {
@@ -41,6 +43,7 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route exact path={screens.MAIN} component={HubMainScreen}/>
+          <Route exact path={screens.HUB_INSIGHT_SCREEN} component={HubInsightScreen}/>
           <Route exact path={screens.HUB_PROJECT_CREATE_EXECUTABLE} component={HubExecutableCreateScreen}/>
           <Route exact path={screens.HUB_PROJECT_EXECUTABLE_DETAIL} component={HubExecutableDetailScreen}/>
           <Route exact path={screens.HUB_PROJECT_EXECUTABLE_PROCESS_DETAIL} component={HubExecutableProcessDetailScreen}/>

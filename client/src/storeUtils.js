@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as classes from './constants/classes';
 import * as progressActions from './actions/progress';
 import * as projectActions from './actions/hub/project';
+import * as insightActions from './actions/hub/insights';
 import * as controlPanelActions from './actions/hub/controlPanel';
 import * as executablesActions from './actions/hub/executables';
 import * as commitActions from './actions/hub/commit';
@@ -121,13 +122,13 @@ export function getWithState(caseName, caseClass) {
         postNewTag: tagsActions.postNewTag,
       });
       break;
-    case classes.HUB_PROJECT_EXPERIMENT_SCREEN:
+    case classes.INSIGHT_CONTENT:
       mapState2Props = (state) => ({
         project: state.project.project,
         user_name: state.project.project.user_name,
       });
       Object.assign(mapDispatch2Props, {
-        getExperiment: projectActions.getExperiment,
+        getInsights: insightActions.getInsights,
         getExperimentComponent: projectActions.getExperimentComponent,
       });
       break;

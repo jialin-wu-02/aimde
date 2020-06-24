@@ -16,13 +16,13 @@ import UI from '../../../ui';
 import { buildUrl, classNames, formatSize } from '../../../utils';
 import { SERVER_HOST, SERVER_API_HOST, WS_HOST } from '../../../config';
 import * as screens from '../../../constants/screens';
-import CorrelationHeatmap from '../../../components/hub/CorrelationHeatmap/CorrelationHeatmap';
-import ExperimentDistributionCell from '../../../components/hub/ExperimentDistributionCell/ExperimentDistributionCell';
-import ExperimentStatisticsCell from '../../../components/hub/ExperimentStatisticsCell/ExperimentStatisticsCell';
-import ExperimentMetricGroup from '../../../components/hub/ExperimentMetricGroup/ExperimentMetricGroup';
-import CommitNavigation from '../../../components/hub/CommitNavigation/CommitNavigation';
-import IncompatibleVersion from '../../../components/global/IncompatibleVersion/IncompatibleVersion';
-import CurrentRunIndicator from '../../../components/hub/CurrentRunIndicator/CurrentRunIndicator';
+import CorrelationHeatmap from '../CorrelationHeatmap/CorrelationHeatmap';
+import ExperimentDistributionCell from '../ExperimentDistributionCell/ExperimentDistributionCell';
+import ExperimentStatisticsCell from '../ExperimentStatisticsCell/ExperimentStatisticsCell';
+import ExperimentMetricGroup from '../ExperimentMetricGroup/ExperimentMetricGroup';
+import CommitNavigation from '../CommitNavigation/CommitNavigation';
+import IncompatibleVersion from '../al/IncompatibleVersion/IncompatibleVersion';
+import CurrentRunIndicator from '../CurrentRunIndicator/CurrentRunIndicator';
 
 class InsightContent extends React.Component {
   constructor(props) {

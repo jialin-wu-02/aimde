@@ -17,7 +17,7 @@ function ListItem({ children, className, description, onHoverEffect }) {
   const onMouseEnterHandler = () => {
     if (onHoverEffect) {
       setHoverStyle({
-        paddingLeft: '0.5em',
+        paddingLeft: '12px',
         backgroundColor: '#f6f6f6',
       });
     }

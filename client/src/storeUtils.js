@@ -118,6 +118,7 @@ export function getWithState(caseName, caseClass) {
       break;
     case classes.HUB_PROJECT_EDIT_TAG:
       Object.assign(mapDispatch2Props, {
+        getTag: tagsActions.getTag,
         getTags: tagsActions.getTags,
         updateTag: tagsActions.updateTag,
         getRelatedRuns: tagsActions.getRelatedRuns,

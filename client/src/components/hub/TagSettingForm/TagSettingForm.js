@@ -38,7 +38,7 @@ class TagSettingForm extends React.Component {
     ];
   }
 
-  handleBtnClick = (type, updateFunction) => {
+  handleBtnClick = (updateFunction) => {
     this.setState({
       buttonStatus: {
         loading: true,
@@ -49,11 +49,8 @@ class TagSettingForm extends React.Component {
     let body = {
       name: this.state.form.name,
       color: this.state.form.color,
+      id: this.props.tag_id ? this.props.tag_id : null,
     };
-
-    if (type === 'Update') {
-      body['id'] = this.props.tag_id;
-    }
 
     updateFunction(body)
       .then((data) => {
@@ -144,7 +141,7 @@ class TagSettingForm extends React.Component {
           <UI.Buttons>
             <UI.Button
               onClick={() =>
-                this.handleBtnClick(this.props.type, this.props.updateFunction)
+                this.handleBtnClick(this.props.updateFunction)
               }
               type='positive'
               {...this.state.buttonStatus}

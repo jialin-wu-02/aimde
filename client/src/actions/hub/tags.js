@@ -14,6 +14,18 @@ export function getTags() {
   }
 }
 
+export function getTag(tag_id) {
+  return dispatch => {
+    return new Promise((resolve, reject) => {
+      callApi('Tag.getTag', { tag_id }).then((data) => {
+        resolve(data);
+      }).catch((err) => {
+        reject(err);
+      });
+    });
+  }
+}
+
 export function postNewTag(params) {
   return dispatch => {
     return new Promise((resolve, reject) => {

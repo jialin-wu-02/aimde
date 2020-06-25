@@ -101,6 +101,25 @@ paths:
             application/json:
               schema:
                 type: object
+  "/tags/{tag_id}":
+    get:
+      operationId: getTag
+      summary: Get the tag with tag_id
+      tags:
+        - Tag
+      parameters:
+        - name: tag_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
   "/executables/new":
     post:
       operationId: newExecutable

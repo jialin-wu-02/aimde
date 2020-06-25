@@ -3,6 +3,7 @@ import './HubTagDetailScreen.less';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Redirect, Link } from 'react-router-dom';
+import moment from 'moment';
 
 import { buildUrl } from '../../../utils';
 
@@ -40,33 +41,24 @@ class HubTagDetailScreen extends React.Component {
       isLoading: true,
     }));
 
-    this.props
-      .getTags()
-      .then((data) =>
-        data.forEach((tag) => {
-          if (tag.id == tag_id) {
-            this.setState({
-              tag: tag,
-              form: {
-                name: tag.name,
-                color: tag.color,
-              },
-            });
-          }
-        })
-      )
-      .finally(() => {
-        this.setState((prevState) => ({
-          ...prevState,
-          isLoading: false,
-        }));
-      });
+    this.props.getTag(tag_id).then((tag) => {
+      this.setState({
+        tag: tag,
+        form: {
+          name: tag.name,
+          color: tag.color,
+        }
+      })
+    }).finally(() => {
+      this.setState((prevState) => ({
+        ...prevState,
+        isLoading: false,
+      }));
+    });
   };
 
   getRelatedRuns = (tag_id) => {
-    console.log(tag_id);
     this.props.getRelatedRuns(tag_id).then((data) => {
-      console.log(data);
       this.setState({
         relatedRuns: data.data,
       });
@@ -76,19 +68,25 @@ class HubTagDetailScreen extends React.Component {
   _renderOverview = () => {
     return (
       <div className='HubTagDetailScreen__container'>
-        <UI.Text>Related Runs</UI.Text>
         <div className='HubTagDetailScreen__items'>
           {this.state.relatedRuns.map((run) => (
             <div className='HubTagDetailScreen__item' key={run.hash}>
-              <Link
-                to={buildUrl(screens.HUB_PROJECT_EXPERIMENT, {
-                  experiment_name: run.experiment_name,
-                  commit_id: run.hash,
-                })}
-              >
-                {run.hash}
-              </Link>
-              <UI.Text inline>{run.created_at}</UI.Text>
+              <div className='HubTagDetailScreen__item__inner'> 
+                <UI.Text inline>{run.experiment_name} 
+                  {' '} / {' '}
+                  <Link
+                    to={buildUrl(screens.HUB_PROJECT_EXPERIMENT, {
+                      experiment_name: run.experiment_name,
+                      commit_id: run.hash,
+                    })}
+                  >
+                    {run.hash}
+                  </Link>
+                </UI.Text>
+              </div>
+              <UI.Text type="grey" small>
+                Created at {moment(run.created_at).format('HH:mm · D MMM, YY')}
+              </UI.Text>
             </div>
           ))}
         </div>
@@ -100,7 +98,6 @@ class HubTagDetailScreen extends React.Component {
     if (this.state.isLoading) {
       return (
         <UI.Text type='grey' center>
-          {' '}
           Loading..
         </UI.Text>
       );
@@ -109,15 +106,13 @@ class HubTagDetailScreen extends React.Component {
     return (
       <>
         <UI.Text
-          className='HubExecutableDetailScreen__name'
           size={6}
           header
           spacing
         >
           <Link to={screens.HUB_PROJECT_TAGS}>Tags</Link>
           <UI.Text type='grey' inline>
-            {' '}
-            / {this.state.tag.name}
+            {' '} / {this.state.tag.name}
           </UI.Text>
         </UI.Text>
         <UI.Tabs
@@ -128,7 +123,7 @@ class HubTagDetailScreen extends React.Component {
                 active={this.state.activeTab === 'overview'}
                 onClick={() => this.setState({ activeTab: 'overview' })}
               >
-                Overview
+                Related Runs
               </UI.Tab>
               <UI.Tab
                 className=''
@@ -144,7 +139,6 @@ class HubTagDetailScreen extends React.Component {
           {this.state.activeTab === 'overview' && this._renderOverview()}
           {this.state.activeTab === 'settings' && (
             <TagSettingForm
-              type='Update'
               name={this.state.form.name}
               color={this.state.form.color}
               tag_id={this.props.match.params.tag_id}
@@ -158,10 +152,6 @@ class HubTagDetailScreen extends React.Component {
   };
 
   render() {
-    if (this.state.redirectTags) {
-      return <Redirect to={screens.HUB_PROJECT_TAGS} />;
-    }
-
     return (
       <ProjectWrapper>
         <Helmet>

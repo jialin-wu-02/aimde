@@ -94,3 +94,14 @@ class TagGetRelatedRuns(Resource):
         return jsonify({
             'data': relatedRuns,
         })
+
+@tags_api.resource('/<tag_id>')
+class TagGetSingle(Resource):
+    def get(self, tag_id):
+        tag = Tag.query.filter_by(uuid=tag_id).first()
+        if not tag:
+            return make_response(jsonify({}), 404)
+        return jsonify({
+            'name': tag.name,
+            'color': tag.color,
+        })

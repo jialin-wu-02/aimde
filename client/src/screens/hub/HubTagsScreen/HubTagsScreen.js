@@ -63,7 +63,7 @@ class HubTagsScreen extends React.Component {
         {!!this.state.tags &&
         <UI.List>
           {this.state.tags.map((tag, tagKey) =>
-            <UI.ListItem key={tagKey} className='HubTagsScreen__tags__item'>
+            <UI.ListItem onHoverEffect={true} key={tagKey} className='HubTagsScreen__tags__item'>
               <Link to={buildUrl(screens.HUB_PROJECT_EDIT_TAG, {
                 tag_id: tag.id
               })}>

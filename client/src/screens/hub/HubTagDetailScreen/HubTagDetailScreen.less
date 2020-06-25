@@ -6,9 +6,15 @@
 
 .HubTagDetailScreen__item {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  padding: var(--component-spacing-sm) 0;
   margin: var(--component-spacing-sm) 0;
+  border-bottom: solid #eee 1px;
+}
+
+.HubTagDetailScreen__item__inner {
+  display: flex;
+  flex-direction: row;
 
   > * {
     margin-right: var(--component-spacing-sm);

@@ -21,7 +21,6 @@ class HubTagCreateScreen extends React.Component {
           Create New Tag
         </UI.Text>
         <TagSettingForm
-          type='Create'
           updateFunction={this.props.postNewTag}
           redirectURL={screens.HUB_PROJECT_TAGS}
         />

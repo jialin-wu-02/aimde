@@ -256,6 +256,20 @@ class InsightContent extends React.Component {
     });
   };
 
+    /*  Genearte URL for a component.
+    URL Format: '/insight/:experiment_name/:commit_id/:insight_name' */
+    generateExperimentCellHref = (insight_name) => {
+      let experiment_name = this.props.experiment_name,
+        commit_id = this.props.commit_id;
+      return '/insights/'.concat(
+        experiment_name,
+        '/',
+        commit_id,
+        '/',
+        insight_name
+      );
+    };
+
   getExperiment = () => {
     if (this.onIndex()) {
       this.WSOpen();
@@ -353,7 +367,7 @@ class InsightContent extends React.Component {
     const data = this.state.metricsData[metric.name].data;
 
     return (
-      <ExperimentCell type='metric' footerTitle={metric.name} key={key * 10 + 5}>
+      <ExperimentCell href={this.generateExperimentCellHref(metric.name)} type='metric' footerTitle={metric.name} key={key * 10 + 5}>
         <UI.LineChart
           key={key}
           header={metric.name}
@@ -400,6 +414,7 @@ class InsightContent extends React.Component {
     return (
       <>
         <ExperimentCell
+          href={this.generateExperimentCellHref(mapItem.name)}
           type='map'
           footerTitle={mapItem.name}
           key={mapKey * 10 + 9}
@@ -432,9 +447,9 @@ class InsightContent extends React.Component {
     return (
       <>
         {!!this.props.project.branches && !!this.props.project.branches.length &&
-          <div className='HubExperimentScreen__header'>
+          <div className='InsightContent__header'>
             <UI.Dropdown
-              className='HubExperimentScreen__branchSelect'
+              className='InsightContent__branchSelect'
               width={200}
               options={this.props.project.branches && this.props.project.branches.map(val => ({
                 value: val,
@@ -480,9 +495,9 @@ class InsightContent extends React.Component {
     return (
       <>
         {this._renderExperimentHeader()}
-        <div className='HubExperimentScreen__empty'>
+        <div className='InsightContent__empty'>
           <ReactSVG
-            className='HubExperimentScreen__empty__illustration'
+            className='InsightContent__empty__illustration'
             src={require('../../../asset/illustrations/no_data.svg')}
           />
           <UI.Text size={6} type='grey-light' center>
@@ -497,9 +512,9 @@ class InsightContent extends React.Component {
     return (
       <>
         {this._renderExperimentHeader()}
-        <div className='HubExperimentScreen__empty'>
+        <div className='InsightContent__empty'>
           <ReactSVG
-            className='HubExperimentScreen__empty__illustration'
+            className='InsightContent__empty__illustration'
             src={require('../../../asset/illustrations/no_data.svg')}
           />
           <UI.Text size={6} type='grey-light' center>

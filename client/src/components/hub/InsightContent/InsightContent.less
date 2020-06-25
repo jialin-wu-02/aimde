@@ -1,6 +1,6 @@
 @import '../../../vars';
 
-.HubExperimentScreen__header {
+.InsightContent__header {
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-column-gap: var(--component-spacing-md);
@@ -12,13 +12,13 @@
   }
 }
 
-.HubExperimentScreen__header {
-  + .HubExperimentScreen__grid {
+.InsightContent__header {
+  + .InsightContent__grid {
     margin-top: var(--component-spacing-md);
   }
 }
 
-.HubExperimentScreen__grid {
+.InsightContent__grid {
   display: block;
   overflow: hidden;
 
@@ -29,17 +29,17 @@
   }
 }
 
-.HubExperimentScreen__grid__wrapper {
+.InsightContent__grid__wrapper {
   margin: calc(-1 * var(--component-spacing-sm));
 }
 
-.HubExperimentScreen__init__markdown {
-  .HubExperimentScreen__markdown__block:last-child {
+.InsightContent__init__markdown {
+  .InsightContent__markdown__block:last-child {
     margin-bottom: 0;
   }
 }
 
-.HubExperimentScreen__markdown__block {
+.InsightContent__markdown__block {
   margin-bottom: var(--component-spacing-md);
 
   .Text {
@@ -239,11 +239,11 @@
   justify-content: space-between;
 }
 
-.HubExperimentScreen__empty {
+.InsightContent__empty {
   padding: var(--component-spacing-md);
 }
 
-.HubExperimentScreen__empty__illustration {
+.InsightContent__empty__illustration {
   margin: var(--component-spacing-xl) 0;
   text-align: center;
 

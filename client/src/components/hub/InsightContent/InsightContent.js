@@ -26,6 +26,7 @@ class InsightContent extends React.Component {
     super(props);
 
     this.state = {
+      insight_type: null,
       isLoading: true,
       notFound: false,
       versionError: false,
@@ -51,6 +52,8 @@ class InsightContent extends React.Component {
     this.getExperiment();
 
     this.handleResize();
+    this.experimentCenterStyle = this.props.insight_name ? {position: "absolute", left: "50%", transform: "translateX(-50%)"} : null;
+    console.log(this.experimentCenterStyle)
     window.addEventListener('resize', this.handleResize);
   }
 
@@ -306,6 +309,7 @@ class InsightContent extends React.Component {
           commits: data.commits ? Object.values(data.commits) : [],
           commit: data.commit ? data.commit : null,
           selectedModel: !!data.models ? data.models[0] : false,
+          insight_type: data.insight_type,
         };
       }, () => {
         if (data.metrics) {
@@ -367,7 +371,7 @@ class InsightContent extends React.Component {
     const data = this.state.metricsData[metric.name].data;
 
     return (
-      <ExperimentCell href={this.generateExperimentCellHref(metric.name)} type='metric' footerTitle={metric.name} key={key * 10 + 5}>
+      <ExperimentCell style={this.experimentCenterStyle} href={this.generateExperimentCellHref(metric.name)} type='metric' footerTitle={metric.name} key={key * 10 + 5}>
         <UI.LineChart
           key={key}
           header={metric.name}
@@ -414,6 +418,7 @@ class InsightContent extends React.Component {
     return (
       <>
         <ExperimentCell
+          style={this.experimentCenterStyle}
           href={this.generateExperimentCellHref(mapItem.name)}
           type='map'
           footerTitle={mapItem.name}
@@ -591,6 +596,7 @@ class InsightContent extends React.Component {
               this._renderHyperparameters()}
             {!!this.state.experiment.models.length && (
               <ExperimentCell
+                style={this.experimentCenterStyle}
                 href={this.generateExperimentCellHref(
                   this.state.experiment.models[0].data.name
                 )}
@@ -665,8 +671,10 @@ class InsightContent extends React.Component {
       </ProjectWrapper>
     );
   };
-
+  
+  // TODO: check renderoneinsight
   _renderOneInsight(insight_type) {
+    console.log(insight_type)
     let selectedModel = this.state.selectedModel;
 
     if (this.state.versionError) {
@@ -737,6 +745,7 @@ class InsightContent extends React.Component {
         render_content = (
           !!this.state.experiment.models.length && (
             <ExperimentCell
+              style={this.experimentCenterStyle}
               href={this.generateExperimentCellHref(
                 this.state.experiment.models[0].data.name
               )}

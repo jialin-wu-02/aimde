@@ -23,7 +23,7 @@ function ExperimentCell({ children, className, type, height, width, footerTitle,
   }
 
   return (
-    <div className={compClassName}>
+    <div className={compClassName} style={style}>
       <div className='ExperimentCell__body'>
         {children}
       </div>

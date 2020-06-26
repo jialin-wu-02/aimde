@@ -72,17 +72,16 @@ class HubTagDetailScreen extends React.Component {
           {this.state.relatedRuns.map((run) => (
             <div className='HubTagDetailScreen__item' key={run.hash}>
               <div className='HubTagDetailScreen__item__inner'> 
-                <UI.Text inline>{run.experiment_name} 
-                  {' '} / {' '}
-                  <Link
-                    to={buildUrl(screens.HUB_PROJECT_EXPERIMENT, {
-                      experiment_name: run.experiment_name,
-                      commit_id: run.hash,
-                    })}
-                  >
-                    {run.hash}
-                  </Link>
-                </UI.Text>
+                <Link
+                  to={buildUrl(screens.HUB_PROJECT_EXPERIMENT, {
+                    experiment_name: run.experiment_name,
+                    commit_id: run.hash,
+                  })}
+                >
+                  <UI.Text inline>{run.experiment_name} 
+                    {' '} / {' '} {run.hash}
+                  </UI.Text>
+                </Link>
               </div>
               <UI.Text type="grey" small>
                 Created at {moment(run.created_at).format('HH:mm · D MMM, YY')}

@@ -1,33 +1,19 @@
 import './List.less';
 
-import React , { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { classNames } from '../../utils';
 
 
-function ListItem({ children, className, description, onHoverEffect }) {
+function ListItem({ children, className, description }) {
   const compClassName = classNames({
     ListItem: true,
     [className]: !!className,
   });
 
-  const [hoverStyle, setHoverStyle] = useState(null)
-
-  const onMouseEnterHandler = () => {
-    if (onHoverEffect) {
-      setHoverStyle({
-        paddingLeft: '12px',
-        backgroundColor: '#f6f6f6',
-      });
-    }
-  }
-  const onMouseLeaveHandler = () => {
-    setHoverStyle(null);
-  }
-
   return (
-    <li className={compClassName} onMouseEnter={onMouseEnterHandler} onMouseLeave={onMouseLeaveHandler} style={hoverStyle}>
+    <li className={compClassName}>
       {children}
       {!!description &&
         <div className='ListItem__desc'>{description}</div>

@@ -146,7 +146,7 @@ class TagSettingForm extends React.Component {
               type='positive'
               {...this.state.buttonStatus}
             >
-              {this.props.type}
+              {this.props.tag_id ? 'Save' : 'Create'}
             </UI.Button>
             <Link to={screens.HUB_PROJECT_TAGS}>
               <UI.Button type='secondary'> Cancel </UI.Button>

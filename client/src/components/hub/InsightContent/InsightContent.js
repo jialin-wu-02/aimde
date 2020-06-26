@@ -656,9 +656,10 @@ class InsightContent extends React.Component {
   }
 
   _renderAllInsights = () => {  
+    console.log(this.state.experiment_name)
     return (
       <ProjectWrapper
-        experimentName={this.state.experiment_name}
+        experimentName={this.props.experiment_name}
         navigation={this._renderNavigation()}
         contentWidth={this.state.contentWidth}
       >
